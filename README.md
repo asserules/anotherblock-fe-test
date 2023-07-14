@@ -1,9 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# anotherblock frontend test
+
+## requirements
+* fetch data with react-query from [https://cdn.anotherblock.io/mock-data.json](https://cdn.anotherblock.io/mock-data.json)
+* implement design from [figma](https://www.figma.com/file/cBZjzlR9HCbM4wMIdiiEJc/Untitled?type=design&node-id=0%3A1&mode=design&t=B7lLhW9OJF4xPGbN-1) using tailwind. its the 4th element that is larger 
+* implement a search filter that filters on either the artist or the track
+
+## extra 
+We see the requirements as crucial but if you feel free to add anything extra if you feel like it. Some topics we tackle in our day-to-day work
+* state management
+* client side / server side components / SSR+SSG
+* animations
+    * animate elements in/out
+    * hover effects
+    * parallax
+
+
+### a teste of libraries we use at anotherblock
+* threejs
+* react-three-fiber
+* framer-motion
+* zustand
+* react-query
+* zod
+
+ 
 
 ## Getting Started
 
 First, run the development server:
 
+```bash 
+yarn init 
+npm init
+```
 ```bash
 npm run dev
 # or
