@@ -12,3 +12,11 @@ export type Song = {
   streams: Stream
   color: string
 }
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    "spline-viewer": {
+      url: string
+    }
+  }
+}
