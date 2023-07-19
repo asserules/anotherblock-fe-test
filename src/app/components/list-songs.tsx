@@ -27,8 +27,6 @@ export default function ListSongs() {
   const [searchTerm, setSearchTerm] = useState("")
   const [filteredSongs, setFilteredSongs] = useState<Song[]>([])
   const [isDataLoaded, setIsDataLoaded] = useState(false)
-  const [searchUpdated, setSearchUpdated] = useState(false)
-
   const [numPlaceholders, setNumPlaceholders] = useState<number>(0)
 
   function calculatePlaceholders(numItems: number): number {
@@ -81,29 +79,20 @@ export default function ListSongs() {
       if (searchTerm) {
         results = data.filter(
           (song) =>
-            song.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            song.track.toLowerCase().includes(searchTerm.toLowerCase())
+            song.artist
+              .toLowerCase()
+              .trim()
+              .includes(searchTerm.toLowerCase().trim()) ||
+            song.track
+              .toLowerCase()
+              .trim()
+              .includes(searchTerm.toLowerCase().trim())
         )
       }
       setFilteredSongs(results)
-      setSearchUpdated(true)
-    }
-  }, [data, searchTerm])
-
-  useEffect(() => {
-    if (data) {
       setIsDataLoaded(true)
     }
-  }, [data])
-
-  useEffect(() => {
-    if (isDataLoaded || searchUpdated) {
-      const timeoutId = setTimeout(() => {
-        setSearchUpdated(false)
-      }, 500) // Adjust delay to match animation duration
-      return () => clearTimeout(timeoutId)
-    }
-  }, [isDataLoaded, searchUpdated])
+  }, [data, searchTerm])
 
   const list = {
     hidden: { opacity: 0 },
@@ -135,7 +124,7 @@ export default function ListSongs() {
       </div>
       <div className="mt-[100px]">
         {error ? (
-          <p>Oh no, there was an error</p>
+          <p>Oh no, there was an error fetching our tracks</p>
         ) : //client side loading
         isFetching || isLoading ? (
           <LoadingGhost count={calculatePlaceholders(0)} header={false} />
